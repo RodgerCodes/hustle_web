@@ -2,7 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const path = require('path');
-const exp = require('constants');
+const { engine } = require('express-handlebars');
+const ConnectDB = require('./config/db')
 
 // init express
 const app = express();
@@ -11,6 +12,20 @@ const app = express();
 dotenv.config({
     path:'./config.env'
 });
+
+// db
+ConnectDB();
+
+// view setup
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+
+
+app.use(express.static(path.join(__dirname, 'public')))
+
+// routes
+app.use('/', require('./routes/index'))
+
 
 // logger setup
 if(process.env.NODE_ENV == 'development'){
