@@ -8,13 +8,21 @@ const ConnectDB = require('./config/db')
 // init express
 const app = express();
 
+
+
+
 // env
 dotenv.config({
     path:'./config.env'
 });
 
+app.use(express.json());
+app.use(express.urlencoded({extended:false}))
+
 // db
 ConnectDB();
+
+
 
 // view setup
 app.engine('handlebars', engine());
