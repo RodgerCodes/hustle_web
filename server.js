@@ -49,7 +49,9 @@ app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'public')))
 
 // routes
-app.use("/", require('./routes/index'))
+app.use("/", require('./routes/index'));
+app.use('/home', require('./routes/freelancer'));
+app.use('/client', require('./routes/client'));
 
 
 // logger setup

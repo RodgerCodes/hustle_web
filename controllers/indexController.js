@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/users');
+const passport = require('passport');
 
 module.exports = {
     indexRoute:(req, res) => {
@@ -63,6 +64,14 @@ module.exports = {
     },
 
     PostLogin:(req, res) => {
-        // post logic
+        passport.authenticate('local', {failureRedirect:'/login'}, async(req, res) => {
+            const user = await User.findOne({email:email});
+
+            if(user.role == 'client'){
+                res.redirect('/account')
+            } 
+
+            res.redirect('/home');
+        })        
     },
 }
