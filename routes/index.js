@@ -6,7 +6,7 @@ router.get('/', indexController.indexRoute);
 
 router.get('/register', indexController.GetRegister);
 
-router.post('/register/new', indexController.PostRegister)
+router.post('/register', indexController.PostRegister)
 
 router.get('/login', indexController.GetLogin);
 

@@ -8,9 +8,6 @@ const ConnectDB = require('./config/db')
 // init express
 const app = express();
 
-
-
-
 // env
 dotenv.config({
     path:'./config.env'
@@ -23,7 +20,6 @@ app.use(express.urlencoded({extended:false}))
 ConnectDB();
 
 
-
 // view setup
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
@@ -32,7 +28,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'public')))
 
 // routes
-app.use('/', require('./routes/index'))
+app.use("/", require('./routes/index'))
 
 
 // logger setup

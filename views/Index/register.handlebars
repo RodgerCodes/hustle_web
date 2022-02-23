@@ -1,6 +1,3 @@
-<!-- component -->
-
-		<!-- Container -->
 		<div class="container mx-auto">
 			<div class="flex justify-center px-6 my-12">
 				<!-- Row -->
@@ -18,7 +15,7 @@
 						   <p>{{msg}}</p>
 						   {{/each}}
 						{{/if}}
-						<form class="px-8 pt-6 pb-8 mb-4 bg-white rounded" action="/register/new" method="POST">
+						<form class="px-8 pt-6 pb-8 mb-4 bg-white rounded" action="/register" method="POST">
 							<div class="mb-4 md:flex md:justify-between">
 								<div class="mb-4 md:mr-2 md:mb-0">
 									<label class="block mb-2 text-sm font-bold text-gray-700" for="firstName">
@@ -87,6 +84,7 @@
 										class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 										id="confirm_password"
 										type="password"
+										name="confirm_password"
 										placeholder="confirm password"
 									/>
 								</div>

@@ -10,45 +10,51 @@ module.exports = {
        res.render('Index/register')
     },
 
-    PostRegister: async(req, res) => {
-    //    const { first_name, last_name, email, role, password, confirm_password } = req.body;
+    PostRegister: async (req, res) => {
+       const { first_name, last_name, email, role, password, confirm_password } = req.body;
        const errors = [];
 
-       if(!req.body.first_name || !req.body.last_name || !req.body.email || !req.body.role || !req.body.password){
-         errors.push({msg:"Please fill in all forms"})
+       const user = await User.findOne({email});
+
+    if(user){
+        errors.push({msg:"User already exists"});
+    } else {
+       if(!first_name || !last_name || !email || !password || !confirm_password){
+           errors.push({msg:"Please fill in all forms"});
        }
 
-       if(req.body.password != req.body.confirm_password){
-           errors.push({msg:"Make sure the passwords match"})
+       if(password != confirm_password){
+           errors.push({msg:"Passwords Must Match"})
        }
 
-       if(req.body.password.length < 6){
+       if(password.length < 6){
            errors.push({msg:"Password must have at least six characters"})
        }
 
        if(errors.length > 0){
            res.render('Index/register', {
-               'first_name':req.body.first_name,
-               'last_name':req.body.last_name,
-               'email':req.body.email,
-               'password':req.body.password,
-               'confirm_password':req.body.confirm_password
-           });
+               first_name,
+               last_name,
+               email,
+               errors
+           })
        } else {
            const salt = await bcrypt.genSalt(10);
-           const hash = await bcrypt.hash(req.body.password, salt);
+           const hash = await bcrypt.hash(password, salt);
 
            const newUser = new User({
-               'first_name':req.body.first_name,
-               'last_name':req.body.last_name,
-               'email':req.body.email,
-               'role':req.body.role,
-               'password':hash
+               first_name:first_name,
+               last_name:last_name,
+               role:role,
+               email:email,
+               password:hash,
            });
 
            await newUser.save();
-           res.redirect('/login');
+
+           res.status(201).redirect('/login')
        }
+    }
     },
     
     
