@@ -3,7 +3,11 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 const path = require('path');
 const { engine } = require('express-handlebars');
+const passport = require('passport');
+const session = require('express-session');
 const ConnectDB = require('./config/db')
+const MongoStore = require('connect-mongo')
+const Auth = require('./config/Auth/localStrategy');
 
 // init express
 const app = express();
@@ -18,6 +22,23 @@ app.use(express.urlencoded({extended:false}))
 
 // db
 ConnectDB();
+
+Auth(passport);
+let hour = 7200000;
+app.use(session({
+    resave:true,
+    saveUninitialized:false,
+    secret:process.env.SECRET,
+    cookie: {
+        expires: new Date(Date.now(+hour)),
+        maxAge: hour,
+      },
+    store:MongoStore.create({
+        mongoUrl:process.env.MONGO_URL
+    })
+}))
+app.use(passport.initialize())
+app.use(passport.session());
 
 
 // view setup

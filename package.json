@@ -6,12 +6,13 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "css":"postcss public/css/tailwind.css -o public/css/main.css"
+    "css": "postcss public/css/tailwind.css -o public/css/main.css"
   },
   "author": "Rodger kumwanje",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "connect-mongo": "^4.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
@@ -22,6 +23,7 @@
     "mongoose": "^6.2.2",
     "morgan": "^1.10.0",
     "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
     "postcss-cli": "^9.1.0",
     "sweetalert": "^2.1.2"
   },
