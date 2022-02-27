@@ -1,14 +1,20 @@
-<div class="container mx-auto px-4 flex flex-col justify-center items-center">
+<div class="h-full container mx-auto px-4 flex flex-col justify-center items-center shadow-lg rounded-lg bg-white">
     <div class="py-4 px-4 w-2/3">
         {{#each gigs}}
-           <div>
-               <p class="font-bold text-xl py-2">{{title}}</p>
-               <span class="font-italic text-grey-500">Est budget MKW{{budget}}</span>
+           <div class="mb-16">
+               <div class="flex flex-row justify-between">
+                   <p class="font-bold text-xl py-2">{{title}}</p>
+                   <div class="mt-4">
+                       <a href="/client/edit/{{_id}}" class="mx-4"><i class="fa-solid fa-pen-to-square fa-lg" style="color:blue"></i></a>
+                       <a href="/client/del/{{_id}}"><i class="fa-solid fa-trash fa-lg" style="color: red;"></i></a>
+                   </div>
+               </div>
+               <span class="italic font-sm text-gray-500">Est budget MKW{{budget}}</span>
                <p class="text-md py-2">{{{truncate description 250}}}</p>
                <div>
                    {{#each technologies as |tech|}}
                     <span class="mt-4 inline-block">
-                        <a href="" class="bg-gray-300 rounded-full drop-shadow-lg px-4 py-2">{{tech}}</a>
+                        <a href="" class="bg-gray-300 hover:scale-50 rounded-full shadow-lg px-4 py-2">{{tech}}</a>
                     </span>
                    {{/each}}
                </div>
