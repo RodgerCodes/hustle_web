@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/users');
+const Profile = require('../models/profile');
 const passport = require('passport');
 
 module.exports = {
@@ -14,6 +15,7 @@ module.exports = {
     PostRegister: async (req, res) => {
        const { first_name, last_name, email, role, password, confirm_password } = req.body;
        const errors = [];
+       let img_path = "https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg";
 
        const user = await User.findOne({email});
 
@@ -51,7 +53,14 @@ module.exports = {
                password:hash,
            });
 
+           const newProfile = new Profile({
+               bio:`Hello my name is ${newUser.first_name} ${newUser.last_name}`,
+               phone:'',
+               user:newUser._id,
+           });
+
            await newUser.save();
+           await newProfile.save();
 
            res.status(201).redirect('/login')
        }

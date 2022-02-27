@@ -42,7 +42,10 @@ app.use(passport.session());
 
 
 // view setup
-app.engine('handlebars', engine());
+app.engine('handlebars', engine({runtimeOptions:{
+    allowProtoPropertiesByDefault:true,
+    allowProtoMethodsByDefault:true
+}}));
 app.set('view engine', 'handlebars');
 
 

@@ -1,0 +1,21 @@
+<div class="container mx-auto px-4 flex flex-col justify-center items-center">
+    <div class="py-4 px-4">
+        {{#each gigs}}
+           <div>
+               <p class="font-bold text-xl py-2">{{title}}</p>
+               <span class="font-italic text-grey-500">Est budget MKW{{budget}}</span>
+               <p class="text-md py-4">{{{truncate description 150}}}</p>
+               <div>
+                   {{#each technologies as |tech|}}
+                    <div class="mx-4">
+                        <a href="" class="bg-gray-300 rounded-lg drop-shadow-lg">{{tech}}</a>
+                    </div>
+                   {{/each}}
+               </div>
+           </div>
+        {{else}}
+        <div class="text-center">No gigs available</div>
+        {{/each}}
+    </div>
+    {{> addbtn}}
+</div>
