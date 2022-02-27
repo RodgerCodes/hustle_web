@@ -46,6 +46,19 @@ module.exports = {
        }
     },
 
+    DelGig:async(req, res) => {
+        const user = req.user;
+
+        let gig = await Gigs.findOne({_id:req.params.id});
+
+        if(!gig){
+            // 404
+        } else  {
+            await Gigs.findByIdAndDelete(req.params.id);
+            res.redirect('/client')
+        }
+    },
+
     GetEditAccount:(req, res) => {
 
     },
