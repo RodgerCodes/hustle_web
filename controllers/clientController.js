@@ -5,7 +5,7 @@ const Gigs = require('../models/gigs');
 module.exports = {
     GetGigs:async(req, res) => {
         try {
-            let user = req.user;
+            // let user = req.user;
             const gigs = await Gigs.find({creator:req.user}).sort({createdAt:"desc"}).lean();
             res.render('client/client', {
                 gigs
@@ -14,19 +14,36 @@ module.exports = {
             
         }
     },
-    GetDetails:async(req, res) => {
-        let user = req.user;
-        
-        let details = await Profile.findOne({user:user}).populate('user');
 
-        if(!details){
-            // 404 page
-        } 
-        // console.log(details);
+    GetAddGig:async(req, res) => {
+      res.render('client/new');
+    },
 
-        res.render('client/Details', {
-            details
-        });
+    PostAddGig:async(req, res) => {
+       let user = req.user;
+       const { title, tech, xp, duration, budget, description} = req.body;
+    //    const errors = [];
+
+       if(!title || !tech || !budget || !description){
+           res.render('client/new', {
+               error:"Please fill in all forms"
+           });
+       } else {
+           let technologies = tech.trim().split(",");
+           let newBudget = budget.trim();
+
+           const newGig = new Gigs({
+               title:title,
+               description:description,
+               budget:newBudget,
+               technologies:technologies,
+               client:user,
+               duration:duration,               
+           });
+
+           await newGig.save();
+           res.status(201).redirect('/client')
+       }
     },
 
     GetEditAccount:(req, res) => {
@@ -37,13 +54,9 @@ module.exports = {
 
     },
     
-    GetAddGig:(req, res) => {
-        
-    },
     
-    PostAddGig:(req, res) => {
-
-    },
+    
+    
     
     EditGig:(req, res) => {
 

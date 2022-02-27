@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const path = require('path');
-const { engine } = require('express-handlebars');
+const { engine, create } = require('express-handlebars');
 const passport = require('passport');
 const session = require('express-session');
 const ConnectDB = require('./config/db')
@@ -42,10 +42,18 @@ app.use(passport.session());
 
 
 // view setup
-app.engine('handlebars', engine({runtimeOptions:{
-    allowProtoPropertiesByDefault:true,
-    allowProtoMethodsByDefault:true
-}}));
+const  { truncate }= require('./helpers/hbs');
+const hbs = create({
+runtimeOptions:{
+        allowProtoPropertiesByDefault:true,
+        allowProtoMethodsByDefault:true
+    },
+    helpers:{
+        truncate
+    }
+})
+
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 

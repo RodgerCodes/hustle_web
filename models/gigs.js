@@ -11,7 +11,7 @@ const gigsSchema = new mongoose.Schema({
         required:true
     },
     budget:{
-        type:joi.number(),
+        type:joi.string(),
         required:true
     },
     technologies:{
@@ -24,7 +24,8 @@ const gigsSchema = new mongoose.Schema({
     },
     duration:{
         type:joi.string(),
-        required:true
+        enum:['less than a month', 'between 3 and 6 months', 'more than 6 months' ],
+        default:'less than a month'
     },
     state:{
       type:joi.bool(),
