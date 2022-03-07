@@ -1,5 +1,8 @@
-<div class="h-full container mx-auto px-4 flex flex-col justify-center items-center shadow-lg rounded-lg bg-white">
+<div class="h-full container mx-auto px-4 flex flex-col justify-center items-center rounded-lg bg-white">
     <div class="py-4 px-4 w-2/3">
+    <div class="flex justify-end mb-8">
+       {{> addbtn}}
+    </div>
         {{#each gigs}}
            <div class="mb-16">
                <div class="flex flex-row justify-between">
@@ -26,6 +29,4 @@
         <div class="text-center">No gigs available</div>
         {{/each}}
     </div>
-   
-    {{> addbtn}}
 </div>

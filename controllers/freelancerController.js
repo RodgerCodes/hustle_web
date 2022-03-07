@@ -7,6 +7,7 @@ module.exports = {
        if(user.role == 'client'){
            res.redirect('/client')
        }
+    console.log(user.role)
 
     //    do the other things
     },

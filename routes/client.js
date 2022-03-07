@@ -11,4 +11,6 @@ router.post('/new', Auth, clientController.PostAddGig)
 
 router.delete('/del/:id', Auth, clientController.DelGig);
 
+router.get('/details', Auth, clientController.GetDetails)
+
 module.exports = router;
