@@ -89,4 +89,9 @@ module.exports = {
             res.redirect('/home');
         })        
     },
+
+    PostLogout:(req, res) => {
+        req.logOut();
+        res.redirect('/login');
+    }
 }

@@ -8,7 +8,8 @@ module.exports = {
             // let user = req.user;
             const gigs = await Gigs.find({creator:req.user}).sort({createdAt:"desc"}).lean();
             res.render('client/client', {
-                gigs
+                gigs,
+                layout:'client'
             })
         } catch (error) {
             
@@ -16,7 +17,9 @@ module.exports = {
     },
 
     GetAddGig:async(req, res) => {
-      res.render('client/new');
+      res.render('client/new', {
+          layout:'client'
+      });
     },
 
     PostAddGig:async(req, res) => {
@@ -26,7 +29,8 @@ module.exports = {
 
        if(!title || !tech || !budget || !description){
            res.render('client/new', {
-               error:"Please fill in all forms"
+               error:"Please fill in all forms",
+               layout:"client"
            });
        } else {
            let technologies = tech.trim().split(",");
@@ -69,7 +73,8 @@ module.exports = {
 
     res.render('client/userProfile', {
           profile,
-          completed
+          completed,
+          layout:'client'
       });
     },
 
@@ -80,10 +85,6 @@ module.exports = {
     PostEditAccount:(req, res) => {
 
     },
-    
-    
-    
-    
     
     EditGig:(req, res) => {
 

@@ -16,4 +16,6 @@ router.post('/login', passport.authenticate('local', {
     failureRedirect:"/login"
 }));
 
+router.post('/logout', indexController.PostLogout);
+
 module.exports = router;
