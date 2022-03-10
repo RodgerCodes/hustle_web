@@ -5,11 +5,15 @@ const passport = require('passport');
 
 module.exports = {
     indexRoute:(req, res) => {
-        res.render('landing')
+        res.render('landing', {
+            layout:'index'
+        })
     },
 
     GetRegister:(req, res) => {
-       res.render('Index/register')
+       res.render('Index/register', {
+           layout:"index"
+       })
     },
 
     PostRegister: async (req, res) => {
@@ -69,7 +73,9 @@ module.exports = {
     
     
     GetLogin:(req, res) => {
-        res.render('Index/login')
+        res.render('Index/login', {
+            layout:"index"
+        })
     },
 
     PostLogin:(req, res) => {
