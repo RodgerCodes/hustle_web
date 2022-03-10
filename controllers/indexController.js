@@ -5,7 +5,7 @@ const passport = require('passport');
 
 module.exports = {
     indexRoute:(req, res) => {
-        // render landing ul
+        res.render('landing')
     },
 
     GetRegister:(req, res) => {
