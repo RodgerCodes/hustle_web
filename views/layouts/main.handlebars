@@ -9,6 +9,48 @@
     <title>Devgigs</title>
 </head>
 <body>
+     <header>
+        <nav class="flex items-center bg-white p-3 flex-wrap">
+      <h4><a href="/" class="p-2 mr-4 inline-flex items-center font-bold">
+        <i class="fas fa-code fa-2xl"></i>
+      </a></h4>
+      <button
+        class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
+        data-target="#navigation"
+      >
+        <i class="material-icons">menu</i>
+      </button>
+      <div
+        class="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto"
+        id="navigation"
+      >
+        <div
+          class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto"
+        >
+          <a
+            href="/home"
+            class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white"
+          >
+            <span>Find Work</span>
+          </a>
+          <a
+            href="/home/details"
+            class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white"
+          >
+            <span>Profile</span>
+          </a>
+          <form action="/logout" method="post">
+          <button
+            type="submit"
+            class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white"
+          >
+            <span>Logout</span>
+          </button></form>
+          </a>
+        </div>
+      </div>
+    </nav>
+    </header>
     <div class="h-full">
        {{{body}}}
     </div>

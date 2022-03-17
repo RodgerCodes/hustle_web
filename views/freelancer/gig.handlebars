@@ -1,0 +1,41 @@
+<div class="container mx-auto px-8">
+    <h1 class="font-bold text-2xl">Job Details</h1>
+    <div>
+        <h2 class="py-4 text-xl">{{gig.title}}</h2>
+        <span class="italic font-sm text-gray-500 mb-4">Posted on {{dateFormat gig.createdAt 'YYYYMMDD'}}</span>
+        <p class="text-lg">{{{gig.description}}}</p>
+        <p class="mb-4"></p>
+        <h3 class="mb-2 font-bold text-lg">Technologies</h3>
+         <div class="mb-4">
+            {{#each gig.technologies as |tech|}}
+                 <span class="mt-4 inline-block">
+                      <a href="/home/gig/{{_id}}" class="bg-gray-300 hover:scale-50 rounded-full shadow-lg px-4 py-2">{{tech}}</a>
+                 </span>
+            {{/each}}
+        </div>
+        <h3 class="font-bold text-lg mb-2">Experience Level</h3>
+        <p class="text-md italic mb-4" >{{gig.xp}} Required</p>
+        <h3 class="font-bold text-lg mb-2">Gig Budget</h3>
+        <p class="mb-4 text-md">MKW {{gig.budget}}  </p>
+        <h3 class="font-bold text-lg">Proposed Duration</h3>
+        <p class="text-md mb-4">{{gig.duration}}</p>
+
+        <h3 class="text-lg font-bold mb-2">Apply</h3>
+        <form action="/home/gig/{{gig._id}}" method="post">
+        <h3 class="mb-2">How long will it take you ?</h3>
+        <input type="text" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" name="dev_duration" id="dev_duration" placeholder="Your duration...">
+        <h4 class="text-md font-bold">Cover Letter</h4>
+        <p class="cover-intro mb-4">Introduce yourself and explain why you're strong candidate for this job. Feel
+        free to suggest any changes to the job details or ask to schedule a meeting or
+        video or voice call.Also include a repository link to your latest project</p>      
+       <input class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="formFile">
+        <button class="proposal mb-4">Submit a Proposal</button>
+        </form>
+        <div class="creator_info">
+        <p>Posted by <strong>{{gig.client.first_name}} {{gig.client.last_name}}</strong></p>
+        <p class="contact"><strong>contact:</strong></p> <a href="mailto:{{gig.client.email}}"><i class="fas fa-envelope"></i>Email</a>
+    </div>
+        
+
+    </div>
+</div>

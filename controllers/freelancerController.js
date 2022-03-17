@@ -1,4 +1,5 @@
 const User = require('../models/users');
+const Gigs = require('../models/gigs');
 
 module.exports = {
     GetHome: async(req, res) => {
@@ -7,13 +8,27 @@ module.exports = {
        if(user.role == 'client'){
            res.redirect('/client')
        }
-    console.log(user.role)
-
     //    do the other things
+
+    const gigs = await Gigs.find().sort({createdAt:"desc"}).populate('client').lean();
+    res.render('freelancer/home', {
+        gigs
+    });
     },
 
-    GetGig:(req, res) => {
+    GetGig:async(req, res) => {
+       try {
+           const gig = await Gigs.findOne({_id:req.params.id}).populate('client').lean();
+           if(!gig){
+            //    do something
+           }
 
+           res.render('freelancer/gig', {
+               gig
+           });
+       } catch (error) {
+           
+       }
     },
 
     GetApplyGig:(req, res) => {

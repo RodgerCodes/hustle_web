@@ -11,6 +11,7 @@
   "author": "Rodger kumwanje",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.6.2",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^4.6.0",
     "cors": "^2.8.5",

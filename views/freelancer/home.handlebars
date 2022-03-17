@@ -1,0 +1,24 @@
+<div class="h-full container mx-auto px-4 flex flex-col justify-center items-center rounded-lg bg-white">
+    <div class="py-4 px-4 w-2/3">
+        {{#each gigs}}
+           <div class="mb-16">
+               <div class="flex flex-row justify-between">
+                   <p class="font-bold text-xl py-2">{{title}}</p>
+               </div>
+               <span class="italic font-sm text-gray-500">{{xp}} Experience Required</span>
+               <p class="italic font-sm text-gray-500">Est budget MKW{{budget}} - Posted on {{dateFormat createdAt 'YYYYMMDD'}}</p>
+               <p class="text-md py-2">{{{truncate description 250}}} <a href="/home/gig/{{_id}}">Read More</a></p>
+               <p class="text-sm italic text-gray-500 py-2">By  {{client.first_name}} {{client.last_name}}</p>
+               <div>
+                   {{#each technologies as |tech|}}
+                    <span class="mt-4 inline-block">
+                        <a href="/home/gig/{{_id}}" class="bg-gray-300 hover:scale-50 rounded-full shadow-lg px-4 py-2">{{tech}}</a>
+                    </span>
+                   {{/each}}
+               </div>
+           </div>
+        {{else}}
+        <div class="text-center">No gigs available</div>
+        {{/each}}
+    </div>
+</div>
