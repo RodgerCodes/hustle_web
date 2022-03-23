@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const indexController = require('../controllers/indexController');
-const passport = require('passport')
+const passport = require('passport');
+const { Guest } = require('../middlewares/md');
 
-router.get('/', indexController.indexRoute);
+router.get('/', Guest, indexController.indexRoute);
 
-router.get('/register', indexController.GetRegister);
+router.get('/register', Guest, indexController.GetRegister);
 
-router.post('/register', indexController.PostRegister)
+router.post('/register', Guest, indexController.PostRegister)
 
-router.get('/login', indexController.GetLogin);
+router.get('/login', Guest, indexController.GetLogin);
 
-router.post('/login', passport.authenticate('local', {
+router.post('/login', Guest, passport.authenticate('local', {
     successRedirect:"/home",
     failureRedirect:"/login"
 }));

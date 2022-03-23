@@ -39,7 +39,7 @@ Auth(passport);
 let hour = 7200000;
 app.use(
   session({
-    resave: true,
+    resave: false,
     saveUninitialized: false,
     secret: process.env.SECRET,
     cookie: {

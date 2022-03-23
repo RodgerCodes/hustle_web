@@ -65,10 +65,13 @@ module.exports = {
 
     GetDetails:async(req, res) => {
 
+    // const profile = await Profile.findOne({user:req.user});
+
+    // console.log(profile);
+
     const profile = await Profile.findOne({user:req.user}).populate('user');
 
     let projects = await Gigs.find({client:req.user});
-
     let completed = projects.filter(idea => idea.state != false);
 
     res.render('client/userProfile', {
@@ -76,6 +79,7 @@ module.exports = {
           completed,
           layout:'client'
       });
+    
     },
 
     GetEditAccount:(req, res) => {
