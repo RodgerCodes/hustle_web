@@ -1,5 +1,6 @@
 const User = require("../models/users");
 const Gigs = require("../models/gigs");
+const Proposal = require('../models/proposals');
 
 module.exports = {
   GetHome: async (req, res) => {

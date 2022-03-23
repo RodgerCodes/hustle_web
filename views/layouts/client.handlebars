@@ -54,6 +54,10 @@
      {{{body}}}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js"
+        integrity="sha512-P4rrEImABBYtBFdmrFPqF8rjh8iiRiupfQ4KLrBCL8dAivLiM2nh+1bJQeMb2ZglmIlGZdfTtgGdXH6H/hGVeg=="
+        crossorigin="anonymous"></script>
+
 <script>
   $(document).ready(function() {
   $(".nav-toggler").each(function(_, navToggler) {
@@ -65,5 +69,8 @@
     });
   });
 });
+CKEDITOR.replace('description');
+</script>
+
 </body>
 </html>

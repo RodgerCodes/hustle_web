@@ -43,7 +43,7 @@ app.use(
     saveUninitialized: false,
     secret: process.env.SECRET,
     cookie: {
-      expires: new Date(Date.now(+hour)),
+      expires: new Date(Date.now() + hour),
       maxAge: hour,
     },
     store: MongoStore.create({
