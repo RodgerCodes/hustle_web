@@ -25,12 +25,15 @@ module.exports = {
       const gig = await Gigs.findOne({ _id: req.params.id })
         .populate("client")
         .lean();
+      const num = await Proposal.find({gig:req.params.id}).count();
+    //   console.log(num)
       if (!gig) {
         //    do something
       }
 
       res.render("freelancer/gig", {
         gig,
+        num
       });
     } catch (error) {}
   },
@@ -38,7 +41,7 @@ module.exports = {
   PostApplyGig:async (req, res) => {
     try {
         const gig = await Gigs.findOne({_id:req.params.id}).populate('client');
-
+        const num = await Proposal.find({gig:req.params.id}).count();
         if(gig){
             // do something
         }
@@ -46,15 +49,19 @@ module.exports = {
         const user = await Proposal.findOne({freelancer:req.user});
 
         if(user){
-            // do something
-        }
-
+            res.render('freelancer/gig',{
+                gig, 
+                error:"You have already submitted your proposal",
+                num
+            })
+        } else {
         const { dev_duration, letter } = req.body;
 
         if(!dev_duration || !letter){
             res.render('freelancer/gig', {
                 gig,
-                error:"You have already submitted your application"
+                error:"Please fill in all forms",
+                num
             })
         } else {
             const newProposal = new Proposal({
@@ -70,6 +77,8 @@ module.exports = {
             res.status(201).redirect('/home');
         }
     
+        }
+
     } catch (error) {
         
     }

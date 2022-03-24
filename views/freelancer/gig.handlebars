@@ -2,7 +2,7 @@
     <h1 class="font-bold text-2xl">Job Details</h1>
     <div>
         <h2 class="py-4 text-xl">{{gig.title}}</h2>
-        <span class="italic font-sm text-gray-500 mb-4">Posted on {{dateFormat gig.createdAt 'YYYYMMDD'}}</span>
+        <span class="italic font-sm text-gray-500 mb-4">Posted on {{dateFormat gig.createdAt 'YYYYMMDD'}} - {{num}} Proposals</span>
         <p class="text-lg">{{{gig.description}}}</p>
         <p class="mb-4"></p>
         <h3 class="mb-2 font-bold text-lg">Technologies</h3>
