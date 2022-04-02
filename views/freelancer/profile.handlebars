@@ -1,0 +1,50 @@
+<div class="h-full container mx-auto px-4 items-center">
+   <div class=" shadow-lg rounded-xl mt-8">
+       <a href="/home/freelancer/details/edit" class="w-full px-4 py-2 font-bold text-white bg-blue-500 shadow-lg rounded-sm hover:bg-blue-600 focus:outline-none focus:shadow-outline">Edit profile</a>
+       <div class="flex items-center justify-center">
+           <div>
+           <img src="{{profile.avatar}}" alt="" class="w-64 rounded-full mx-12 shadow-lg my-2 ">
+       </div>
+       <div class="w-1/2">
+           <p class="text-xl font-bold mb-4">Details</p>
+           <ul>
+               <li class="font-bold text-lg">Name : <span class="font-normal">{{profile.user.first_name}} {{profile.user.last_name}}</span></li>
+               <li class="font-bold text-lg">Email : <span class="font-normal">{{profile.user.email}}</span></li>
+               <li class="font-bold text-lg">Phone : <span class="font-normal">{{profile.Phone}}</span></li>
+           </ul>
+           <p class="text-xl font-bold py-4">Bio</p>
+           <p class="text-lg">{{profile.bio}}</p>
+       </div>
+       </div>
+   </div>
+   <div class="my-8 shadow-lg rounded-xl">
+       <div class="px-4 py-4">
+           <h3 class="text-xl font-bold mb-8">Completed Projects</h3>
+           {{#each completed}}
+          <div class="mb-16">
+               <div class="flex flex-row justify-between">
+                   <p class="font-bold text-xl py-2">{{title}}</p>
+                   <div class="mt-4 flex">
+                       <a href="/client/edit/{{_id}}" class="mx-4"><i class="fa-solid fa-pen-to-square fa-lg" style="color:blue"></i></a>
+                       <form action="/client/del/{{_id}}" method="post">
+                         <input type="hidden" name="_method" value="DELETE">
+                         <button type="submit"><i class="fa-solid fa-trash fa-lg" style="color: red;"></i></button>
+                       </form>
+                   </div>
+               </div>
+               <span class="italic font-sm text-gray-500">Est budget MKW{{budget}}</span>
+               <p class="text-md py-2">{{{truncate description 250}}}</p>
+               <div>
+                   {{#each technologies as |tech|}}
+                    <span class="mt-4 inline-block">
+                        <a href="" class="bg-gray-300 hover:scale-50 rounded-full shadow-lg px-4 py-2">{{tech}}</a>
+                    </span>
+                   {{/each}}
+               </div>
+           </div>
+        {{else}}
+        <div class="text-center">You Do Not have any completed projects</div>
+        {{/each}}
+       </div>
+   </div>
+</div>

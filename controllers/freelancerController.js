@@ -1,5 +1,6 @@
 const User = require("../models/users");
 const Gigs = require("../models/gigs");
+const Profile = require("../models/profile");
 const Proposal = require('../models/proposals');
 
 module.exports = {
@@ -108,5 +109,15 @@ module.exports = {
      }
   },
 
-  GetProfile: (req, res) => {},
+  GetProfile: async(req, res) => {
+    try {
+      const profile = await Profile.find({user:req.user}).populate("user").lean();
+      // console.log(profile);
+      res.render('freelancer/profile', {
+        profile
+      });
+    } catch (error) {
+      
+    }
+  },
 };

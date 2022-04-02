@@ -13,4 +13,6 @@ router.get('/client/:id', Auth, freelancerController.GetGigByClient);
 
 router.get('/filter/:tech', Auth, freelancerController.GetGigByStack);
 
+router.get('/details', Auth, freelancerController.GetProfile);
+
 module.exports = router;
