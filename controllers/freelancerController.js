@@ -111,7 +111,7 @@ module.exports = {
 
   GetProfile: async(req, res) => {
     try {
-      const profile = await Profile.find({user:req.user}).populate("user").lean();
+      const profile = await Profile.findOne({user:req.user}).populate("user").lean();
       // console.log(profile);
       res.render('freelancer/profile', {
         profile
