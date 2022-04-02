@@ -9,4 +9,6 @@ router.get('/gig/:id', Auth, freelancerController.GetGig);
 
 router.post('/gig/:id', Auth, freelancerController.PostApplyGig);
 
+router.get('/client/:id', Auth, freelancerController.GetGigByClient);
+
 module.exports = router;

@@ -35,7 +35,7 @@
         <button class="w-full mt-4 px-4 py-2 font-bold text-white bg-blue-500 shadow-lg rounded-sm hover:bg-blue-600 focus:outline-none focus:shadow-outlinemb-4">Submit a Proposal</button>
         </form>
         <div class="creator_info mt-4">
-        <p>Posted by <strong>{{gig.client.first_name}} {{gig.client.last_name}}</strong></p>
+        <a href="/home/client/{{gig.client._id}}">Posted by <strong>{{gig.client.first_name}} {{gig.client.last_name}}</strong></a>
         <p class="contact"><strong>contact:</strong></p> <a href="mailto:{{gig.client.email}}"><i class="fas fa-envelope"></i>Email</a>
     </div>
     </div>

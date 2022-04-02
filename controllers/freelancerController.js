@@ -26,7 +26,7 @@ module.exports = {
         .populate("client")
         .lean();
       const num = await Proposal.find({gig:req.params.id}).count();
-    //   console.log(num)
+      // console.log(gig)
       if (!gig) {
         //    do something
       }
@@ -81,6 +81,18 @@ module.exports = {
 
     } catch (error) {
         
+    }
+  },
+
+  GetGigByClient:async(req, res) => {
+    try{
+      const gigs = await Gigs.find({client:req.params.id}).sort({createdAt:"desc"}).populate('client').lean();
+      // console.log(gigs);
+      res.render('freelancer/clientgigs', {
+        gigs
+      });
+    } catch (err){
+
     }
   },
 
