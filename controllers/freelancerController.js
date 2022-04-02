@@ -89,11 +89,23 @@ module.exports = {
       const gigs = await Gigs.find({client:req.params.id}).sort({createdAt:"desc"}).populate('client').lean();
       // console.log(gigs);
       res.render('freelancer/clientgigs', {
-        gigs
+        gigs,
       });
     } catch (err){
 
     }
+  },
+
+  GetGigByStack:async(req, res) => {
+     try {
+       const gigs = await Gigs.find({technologies:req.params.tech}).sort({createdAt:"desc"}).populate('client').lean();
+       res.render('freelancer/byStack', {
+         gigs,
+         stack:req.params.tech,
+       });
+     } catch (error) {
+       
+     }
   },
 
   GetProfile: (req, res) => {},

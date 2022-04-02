@@ -1,6 +1,6 @@
-<div class="container mx-auto px-8 md:container">
+<div class="container mx-auto px-8">
     <div>
-        <p>Gigs by <span class="italic text-lg"></span></p>
+        <p>Gigs with <span class="font-bold text-xl italic">{{stack}}</span></p>
         <div class="py-4 px-4 w-2/3">
         {{#each gigs}}
            <div class="mb-16">
@@ -20,7 +20,7 @@
                </div>
            </div>
         {{else}}
-        <div class="text-center">This user does not have any available gig</div>
+        <div class="text-center">No gigs available</div>
         {{/each}}
     </div>
     </div>
