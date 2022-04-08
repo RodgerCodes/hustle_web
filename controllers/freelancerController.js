@@ -120,4 +120,12 @@ module.exports = {
       
     }
   },
+
+  PostEditAcc:(req, res) => {
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
 };

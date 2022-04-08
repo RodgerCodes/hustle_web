@@ -82,6 +82,17 @@ if (process.env.NODE_ENV == "development") {
   app.use(morgan("dev"));
 }
 
+
+// Error Handling
+app.use((req, res, next) => {
+  res.status(404).render('errors/404', {
+    layout:"index"
+  })
+})
+app.use((err, req, res, next) => {
+  res.status(500).send({msg:"Internal server error"})
+});
+
 // load server
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
