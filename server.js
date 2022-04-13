@@ -90,7 +90,8 @@ app.use((req, res, next) => {
   })
 })
 app.use((err, req, res, next) => {
-  res.status(500).send({msg:"Internal server error"})
+  // res.status(500).send({msg:"Internal server error"})
+  console.log(err)
 });
 
 // load server

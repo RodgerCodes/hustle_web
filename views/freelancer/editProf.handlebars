@@ -5,15 +5,21 @@
             <div class="mb-4">
                 <h2 class="text-lg font-bold mb-4">Personal Details</h2>
                 <img src="{{profile.avatar}}" class="w-64 rounded-full shadow-lg my-2 mx-auto mb-4" alt="profile photo">
-
-                <form action="">
-                     <div class="flex mx-auto justify-around">
-                        <input type="text" value="{{profile.user.first_name}}">
-                        <input type="text" value="{{profile.user.last_name}}">
+               
+                <form action="/home/freelancer/details/edit/{{profile.user._id}}" enctype="multipart/form-data" method="post">
+                 <input type="hidden" name="_method" value="PUT">
+                 <input type="file" class="mb-4" name="avatar">
+                     <div class="flex mx-auto justify-between">
+                        <input type="text" name="firstname" class="w-full px-3 py-2 mb-3 mx-4 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" value="{{profile.user.first_name}}">
+                        <input type="text" name="lastname" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" value="{{profile.user.last_name}}">
                      </div>
                      <div class="flex mx-auto justify-around">
-                         <input type="email" value="{{profile.user.email}}">
-                         <input type="text" value="{{profile.phone}}">
+                         <input type="email" name="email" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border mx-4 rounded shadow appearance-none focus:outline-none focus:shadow-outline" value="{{profile.user.email}}">
+                         <input type="text" name="phone" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" value="{{profile.phone}}">
+                     </div>
+                     <div>
+                         <textarea name="letter" class="mt-2" id="" cols="30" rows="10">{{profile.bio}}</textarea>
+                         <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white font-bold rounded-lg shadow-lg">Submit</button>
                      </div>
                 </form>
                 

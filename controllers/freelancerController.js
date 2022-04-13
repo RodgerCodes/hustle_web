@@ -139,7 +139,82 @@ module.exports = {
   },
 
   PutEditProf:async(req, res) => {
+    try {
+      const errors = [];
+      const file = req.file;
 
+      if(!file){
+        const user = await User.findOne({_id:req.params.id});
+        const profile = await Profile.findOne({user:user._id});
+        profile.phone = req.body.phone;
+        profile.bio = req.body.bio;
+        profile.avatar = imgpath;
+
+        user.first_name = req.body.firstname;
+        user.last_name = req.body.lastname;
+        user.email = req.body.email;
+
+        await User.findOneAndUpdate({_id:req.params.id}, {
+          first_name:req.body.firstname,
+          last_name:req.body.lastname,
+          email:req.body.email,
+        }, {
+          new:true
+        })
+
+
+        await Profile.findOneAndUpdate({user:user._id}, {
+          phone:req.body.phone,
+          avatar:imgpath,
+          bio:req.body.bio,
+        }, {
+          new:true
+        })
+       
+        res.redirect('/home/details');
+
+        
+
+      } else {
+        if(!req.body.firstname || !req.body.lastname || !req.body.email){
+          // do shit
+        } else {
+          const imgpath = `./public/upload/${req.file.filename}`;
+          const user = await User.findOne({_id:req.params.id});
+          const profile = await Profile.findOne({user:user._id});
+          
+          profile.phone = req.body.phone;
+          profile.bio = req.body.bio;
+          profile.avatar = imgpath;
+
+          user.first_name = req.body.firstname;
+          user.last_name = req.body.lastname;
+          user.email = req.body.email;
+
+          await User.findOneAndUpdate({_id:req.params.id}, {
+            first_name:req.body.firstname,
+            last_name:req.body.lastname,
+            email:req.body.email,
+          }, {
+            new:true
+          })
+
+
+          await Profile.findOneAndUpdate({user:user._id}, {
+            phone:req.body.phone,
+            avatar:imgpath,
+            bio:req.body.bio,
+          }, {
+            new:true
+          })
+
+          res.redirect('/home/details');
+
+        }
+      }
+    } catch (error) {
+      console.log(error)
+    }
   },
 
   PostAddSkills:(req, res) => {
