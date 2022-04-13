@@ -2,13 +2,14 @@ const User = require("../models/users");
 const Gigs = require("../models/gigs");
 const Profile = require("../models/profile");
 const Proposal = require('../models/proposals');
+const Skills = require('../models/skills');
 
 module.exports = {
   GetHome: async (req, res) => {
     const user = await User.findById(req.user);
 
     if (user.role == "client") {
-      res.redirect("/client");
+      return res.redirect("/client");
     }
     //    do the other things
 
@@ -121,9 +122,29 @@ module.exports = {
     }
   },
 
-  PostEditAcc:(req, res) => {
+  GetEditAcc:async(req, res) => {
+     try {
+      //  let AvSkill = [
+      //    'JavaScript', 'VueJs', 'ReactJs', 'SvelteKit', 'Laravel', 'Nodejs', 'Golang','Flutter', 'Kotlin', 'Java', ''
+      //  ]
+       const profile = await Profile.findOne({user:req.params.id}).populate('user').lean();
+       const skills = await Skills.findOne({user:req.params.id}).lean();
+       res.render('freelancer/editProf', {
+        //  skills,
+         profile,
+       })
+     } catch (error) {
+       
+     }
+  },
+
+  PutEditProf:async(req, res) => {
+
+  },
+
+  PostAddSkills:(req, res) => {
     try {
-      
+      console.log(req.body)
     } catch (error) {
       
     }

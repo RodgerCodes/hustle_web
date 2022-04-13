@@ -1,0 +1,23 @@
+<div class="container mx-auto px-4">
+    <div class="px-4">
+        <h1 class="font-bold text-xl mb-4 px-2">Edit Your Profile</h1>
+        <div class="grid grid-col-2 justify-center items-center">
+            <div class="mb-4">
+                <h2 class="text-lg font-bold mb-4">Personal Details</h2>
+                <img src="{{profile.avatar}}" class="w-64 rounded-full shadow-lg my-2 mx-auto mb-4" alt="profile photo">
+
+                <form action="">
+                     <div class="flex mx-auto justify-around">
+                        <input type="text" value="{{profile.user.first_name}}">
+                        <input type="text" value="{{profile.user.last_name}}">
+                     </div>
+                     <div class="flex mx-auto justify-around">
+                         <input type="email" value="{{profile.user.email}}">
+                         <input type="text" value="{{profile.phone}}">
+                     </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>

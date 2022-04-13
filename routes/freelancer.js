@@ -15,4 +15,10 @@ router.get('/filter/:tech', Auth, freelancerController.GetGigByStack);
 
 router.get('/details', Auth, freelancerController.GetProfile);
 
+router.get('/freelancer/details/edit/:id', freelancerController.GetEditAcc);
+
+router.put('/freelancer/details/edit/:id', freelancerController.PutEditProf);
+
+// router.post('/freelancer/details/skills/:id', freelancerController.PostAddSkills);
+
 module.exports = router;
