@@ -55,7 +55,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // view setup
-const { truncate, dateFormat } = require("./helpers/hbs");
+const { truncate, dateFormat, checkState } = require("./helpers/hbs");
 const hbs = create({
   runtimeOptions: {
     allowProtoPropertiesByDefault: true,
@@ -64,6 +64,7 @@ const hbs = create({
   helpers: {
     truncate,
     dateFormat,
+    checkState
   },
 });
 

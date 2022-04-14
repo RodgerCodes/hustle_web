@@ -10,6 +10,14 @@ module.exports = {
     }
 },
 
+ checkState:(state) => {
+    if(state){
+        return 'Completed'
+    } else {
+        return 'Not completed'
+    }
+ },
+
 dateFormat:(date, format) => {
    return moment(date, format).fromNow();
 },

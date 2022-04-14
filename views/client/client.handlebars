@@ -8,14 +8,17 @@
                <div class="flex flex-row justify-between">
                    <p class="font-bold text-xl py-2">{{title}}</p>
                    <div class="mt-4 flex">
-                       <a href="/client/edit/{{_id}}" class="mx-4"><i class="fa-solid fa-pen-to-square fa-lg" style="color:blue"></i></a>
+                       <form action="/client/edit/{{_id}}" method="post">
+                            <input type="hidden" name="_method" value="PUT"> 
+                            <button type="submit" class="mx-4">Completed?<i class="fa-solid fa-check fa-lg" style="color: blue;"></i></button>       
+                    </form>
                        <form action="/client/del/{{_id}}" method="post">
                          <input type="hidden" name="_method" value="DELETE">
                          <button type="submit"><i class="fa-solid fa-trash fa-lg" style="color: red;"></i></button>
                        </form>
                    </div>
                </div>
-               <span class="italic font-sm text-gray-500">Est budget MKW{{budget}}</span>
+               <span class="italic font-sm text-gray-500">Est budget MKW{{budget}} - <span>{{checkState state}} project</span></span>
                <p class="text-md py-2">{{{truncate description 250}}}</p>
                <div>
                    {{#each technologies as |tech|}}

@@ -17,8 +17,14 @@ module.exports = {
       .sort({ createdAt: "desc" })
       .populate("client")
       .lean();
+    let filteredgigs = [];
+    gigs.forEach((gig) => {
+      if(gig.state == false){
+        filteredgigs.push(gig)
+      }
+    })
     res.render("freelancer/home", {
-      gigs,
+      filteredgigs,
     });
   },
 

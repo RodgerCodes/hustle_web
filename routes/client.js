@@ -13,4 +13,6 @@ router.delete('/del/:id', Auth, clientController.DelGig);
 
 router.get('/details', Auth, clientController.GetDetails)
 
+router.put('/edit/:id', Auth, clientController.PutState);
+
 module.exports = router;

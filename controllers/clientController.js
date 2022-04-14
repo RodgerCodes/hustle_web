@@ -63,6 +63,24 @@ module.exports = {
         }
     },
 
+    PutState:async(req, res) => {
+      try {
+          const gig = await Gigs.findOne({_id:req.params.id});
+          if(!gig){
+            //   do shit
+          } else {
+              gig.state = true;
+              await Gigs.findOneAndUpdate({_id:req.params.id}, {
+                 state:true,
+              });
+
+              res.redirect('/client');
+          }
+      } catch (error) {
+          
+      }  
+    },
+
     GetDetails:async(req, res) => {
 
     // const profile = await Profile.findOne({user:req.user});
