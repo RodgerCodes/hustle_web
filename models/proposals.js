@@ -14,6 +14,10 @@ const PropSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'gig'
     },
+    approved:{
+       type:joi.bool(),
+       default:false
+    },
     proposed_duration:{
         type:joi.string(),
         required:true,

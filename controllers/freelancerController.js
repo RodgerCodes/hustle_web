@@ -9,7 +9,8 @@ module.exports = {
     const user = await User.findById(req.user);
 
     if (user.role == "client") {
-      return res.redirect("/client");
+      res.redirect("/client");
+      return;
     }
     //    do the other things
 
