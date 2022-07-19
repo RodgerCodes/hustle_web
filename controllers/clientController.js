@@ -81,6 +81,11 @@ module.exports = {
       }  
     },
 
+    FetchProjectProposals:async(req, res) => {
+        
+    },
+
+
     GetDetails:async(req, res) => {
 
     // const profile = await Profile.findOne({user:req.user});
